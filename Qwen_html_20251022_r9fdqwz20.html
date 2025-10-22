@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spain Services</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+      background-color: #f9f9f9;
+      color: #133;
+    }
+    header {
+      background: linear-gradient(120deg, #007a3d, #00a86b);
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem;
+      background: #005a2e;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .project-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+    .project-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .project-card h3 {
+      padding: 0.8rem;
+    }
+    .project-card p {
+      padding: 0 0.8rem 0.8rem;
+      color: #555;
+    }
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background: #eee;
+      margin-top: 2rem;
+    }
+    select {
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🌟 Spain Services</h1>
+  <p>Proyectos exclusivos en España e Iberoamérica</p>
+</header>
+
+<nav>
+  <a href="#inicio">Inicio</a>
+  <a href="#proyectos">Proyectos</a>
+  <a href="#nosotros">Sobre Nosotros</a>
+  <a href="#contacto">Contacto</a>
+</nav>
+
+<section id="inicio">
+  <h2>Bienvenido</h2>
+  <p>Descubre los mejores desarrollos inmobiliarios en paises Hispanoamericanos y España.</p>
+</section>
+
+<section id="proyectos">
+  <h2>Nuestros Proyectos</h2>
+  <select id="countryFilter">
+    <option value="all">Todos los países</option>
+    <option value="españa">España</option>
+    <option value="republica dominicana">República Dominicana</option>
+    <option value="colombia">Colombia</option>
+<option value="bolivia">Bolivia</option>
+    <option value="argentina">Argentina</option>
+  </select>
+
+  <div class="projects" id="projectsContainer">
+    <!-- Las tarjetas se generarán con JavaScript -->
+  </div>
+</section>
+
+<section id="nosotros">
+  <h2>Sobre Nosotros</h2>
+  <p>Somos una empresa dedicada a ofrecer propiedades de alta calidad con un enfoque personalizado para inversores y familias en toda la región iberoamericana.</p>
+</section>
+
+<section id="contacto">
+  <h2>Contacto</h2>
+  <p>¿Interesado en un proyecto? Escríbenos:</p>
+  <form style="max-width: 500px; margin-top: 1rem;">
+    <input type="text" placeholder="Nombre" style="width:100%; padding:0.6rem; margin:0.4rem 0; border:1px solid #ccc; border-radius:4px;">
+    <input type="email" placeholder="Email" style="width:100%; padding:0.6rem; margin:0.4rem 0; border:1px solid #ccc; border-radius:4px;">
+    <textarea placeholder="Mensaje" rows="4" style="width:100%; padding:0.6rem; margin:0.4rem 0; border:1px solid #ccc; border-radius:4px;"></textarea>
+    <button type="submit" style="background:#007a3d; color:white; padding:0.6rem 1.2rem; border:none; border-radius:4px; cursor:pointer;">Enviar</button>
+  </form>
+</section>
+
+<footer>
+  <p>&copy; 2025 Spain Services. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+  const projects = [
+    { name: "Residencial Andalucía", country: "españa", img: "https://via.placeholder.com/300x180?text=España" },
+       { name: "Parque Laureles", country: "colombia", img: "https://via.placeholder.com/300x180?text=Colombia" },
+    { name: "Puerto Madero Residencias", country: "argentina", img: "https://via.placeholder.com/300x180?text=Argentina" },
+    { name: "Costa del Sol", country: "españa", img: "https://via.placeholder.com/300x180?text=España+2" },
+
+  const container = document.getElementById("projectsContainer");
+  const filter = document.getElementById("countryFilter");
+
+  function renderProjects(country = "all") {
+    container.innerHTML = "";
+    const filtered = country === "all" ? projects : projects.filter(p => p.country === country);
+    filtered.forEach(p => {
+      const card = document.createElement("div");
+      card.className = "project-card";
+      card.innerHTML = `
+        <img src="${p.img}" alt="${p.name}">
+        <h3>${p.name}</h3>
+        <p>${p.country.charAt(0).toUpperCase() + p.country.slice(1)}</p>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  filter.addEventListener("change", (e) => renderProjects(e.target.value));
+  renderProjects(); // Mostrar todos al cargar
+</script>
+
+</body>
+</html>
